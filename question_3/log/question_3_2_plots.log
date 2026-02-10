@@ -1,0 +1,47 @@
+========================================================================= 
+Log Path: question_3/log/question_3_2_plots.log 
+Program Path: /cloud/project/question_3/question_3_2_plots.R 
+Working Directory: /cloud/project 
+User Name: r3644648 
+R Version: 4.5.2 (2025-10-31) 
+Machine: application-16641301-deployment-29905062-sh8zf x86_64 
+Operating System: Linux 6.5.0-1024-aws #24~22.04.1-Ubuntu SMP Thu Jul 18 10:43:12 UTC 2024 
+Base Packages: stats graphics grDevices utils datasets methods base 
+Other Packages: tidylog_1.1.0 binom_1.1-1.1 pharmaverseadam_1.2.0 ggplot2_4.0.1 gtsummary_2.5.0 stringr_1.6.0 lubridate_1.9.4 admiral_1.3.1 readr_2.1.6 logr_1.3.9 common_1.1.4 dplyr_1.1.4 sdtm.oak_0.2.0 pharmaversesdtm_1.3.1 pharmaverseraw_0.1.1 
+Log Start Time: 2026-02-10 17:54:03.091551 
+========================================================================= 
+
+group_by: one grouping variable (AETERM)
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.724612 
+NOTE: Elapsed Time: 1.63225102424622 secs 
+
+summarise: now 242 rows and 2 columns, ungrouped
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.73522 
+NOTE: Elapsed Time: 0.0106086730957031 secs 
+
+mutate: new variable 'percent' (double) with 22 unique values and 0% NA
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.746801 
+NOTE: Elapsed Time: 0.0115811824798584 secs 
+
+        new variable 'ci_low' (double) with 22 unique values and 0% NA
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.75094 
+NOTE: Elapsed Time: 0.00413846969604492 secs 
+
+        new variable 'ci_high' (double) with 22 unique values and 0% NA
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.755085 
+NOTE: Elapsed Time: 0.00414466857910156 secs 
+
+slice_head: removed 232 rows (96%), 10 rows remaining
+
+NOTE: Log Print Time:  2026-02-10 17:54:04.763324 
+NOTE: Elapsed Time: 0.0082390308380127 secs 
+
+========================================================================= 
+Log End Time: 2026-02-10 17:54:05.214185 
+Log Elapsed Time: 0 00:00:02 
+========================================================================= 
