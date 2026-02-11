@@ -17,7 +17,7 @@ log_open("question_1/log/question_1.log")
 
 ds_raw <- pharmaverseraw::ds_raw
 
-### read DM domain
+### read DM domain (for study day calculation)
 
 dm <- pharmaversesdtm::dm
 

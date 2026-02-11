@@ -22,12 +22,12 @@ ex <- convert_blanks_to_na(pharmaversesdtm::ex)
 ds <- convert_blanks_to_na(pharmaversesdtm::ds)
 ae <- convert_blanks_to_na(pharmaversesdtm::ae)
 
-### assign DM domain as basis fro ADSL
+### assign DM domain as basis for ADSL
 
 adsl <- dm %>%
   select(-DOMAIN)
 
-### derive age groups (AGEGR9, AGEGR9N)
+### derive age groups (AGEGR9, AGEGR9N) “<18”, “18 - 50”, “>50”
 
 agegr9_lookup <- exprs(
   ~condition,            ~AGEGR9, ~AGEGR9N,
@@ -50,15 +50,18 @@ ex_ext <- ex %>%
     dtc = EXSTDTC,
     new_vars_prefix = "EXST",
     highest_imputation = "h",
-    time_imputation = "00:00:00",
-    ignore_seconds_flag = TRUE,
+    time_imputation = "first",
+    ignore_seconds_flag = TRUE
   ) %>%
   derive_vars_dtm(
     dtc = EXENDTC,
-    new_vars_prefix = "EXEN"
+    new_vars_prefix = "EXEN",
+    highest_imputation = "h",
+    time_imputation = "last",
+    ignore_seconds_flag = TRUE
   )
 
-# derive treatment variables in ADSL  
+# derive treatment variables in ADSL where the patient received a valid dose
 adsl <- adsl %>%
   derive_vars_merged(
     dataset_add = ex_ext,
@@ -82,7 +85,7 @@ adsl <- adsl %>%
   )
 
 
-### derive population flag (ITTFL)
+### set population flag (ITTFL) "Y" if [DM.ARM] not equal to missing, else set to "N"
 adsl <- adsl %>%
   derive_var_merged_exist_flag(
     dataset_add = dm,
@@ -97,6 +100,7 @@ adsl <- adsl %>%
   derive_vars_extreme_event(
     by_vars = exprs(STUDYID, USUBJID),
     events = list(
+      #  last date of VS with a valid test result ([VS.VSSTRESN] and [VS.VSSTRESC] not both missing) and datepart of [VS.VSDTC] not missing
       event(
         dataset_name = "vs",
         order = exprs(VSDTC, VSSEQ),
@@ -108,6 +112,7 @@ adsl <- adsl %>%
           LALVVAR = "VSDTC"
         ),
       ),
+      # last onset date of AEs (datepart of Start Date/Time of Adverse Event [AE.AESTDTC])
       event(
         dataset_name = "ae",
         order = exprs(AESTDTC, AESEQ),
@@ -119,6 +124,7 @@ adsl <- adsl %>%
           LALVVAR = "AESTDTC"
         ),
       ),
+      #last disposition date (datepart of Start Date/Time of Disposition Event [DS.DSSTDTC])
       event(
         dataset_name = "ds",
         order = exprs(DSSTDTC, DSSEQ),
@@ -130,12 +136,14 @@ adsl <- adsl %>%
           LALVVAR = "DSSTDTC"
         ),
       ),
+      # last date of treatment administration where patient received a valid dose (datepart of Datetime of Last Exposure to Treatment [ADSL.TRTEDTM])
       event(
         dataset_name = "adsl",
         condition = !is.na(TRTEDTM),
         set_values_to = exprs(LSTALVDT = TRTEDTM, LALVSEQ = NA_integer_, LALVDOM = "ADSL", LALVVAR = "TRTEDTM"),
       )
     ),
+    # set to max of above calculated variables is VS, AE, DS and ADSL
     source_datasets = list(vs = vs, ae = ae, ds = ds, adsl = adsl),
     tmp_event_nr_var = event_nr,
     order = exprs(LSTALVDT, LALVSEQ, event_nr),

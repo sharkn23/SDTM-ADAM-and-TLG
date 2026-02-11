@@ -4,19 +4,19 @@ Program Path: /cloud/project/question_2/question_2.R
 Working Directory: /cloud/project 
 User Name: r3644648 
 R Version: 4.5.2 (2025-10-31) 
-Machine: application-16641301-deployment-29905062-sh8zf x86_64 
+Machine: application-16641301-deployment-29905062-74ffd x86_64 
 Operating System: Linux 6.5.0-1024-aws #24~22.04.1-Ubuntu SMP Thu Jul 18 10:43:12 UTC 2024 
 Base Packages: stats graphics grDevices utils datasets methods base 
-Other Packages: tidylog_1.1.0 stringr_1.6.0 lubridate_1.9.4 admiral_1.3.1 readr_2.1.6 logr_1.3.9 common_1.1.4 dplyr_1.1.4 sdtm.oak_0.2.0 pharmaversesdtm_1.3.1 pharmaverseraw_0.1.1 
-Log Start Time: 2026-02-10 17:48:16.564422 
+Other Packages: tidylog_1.1.0 binom_1.1-1.1 pharmaverseadam_1.2.0 ggplot2_4.0.1 gtsummary_2.5.0 stringr_1.6.0 lubridate_1.9.4 admiral_1.3.1 readr_2.1.6 logr_1.3.9 common_1.1.4 dplyr_1.1.4 sdtm.oak_0.2.0 pharmaversesdtm_1.3.1 pharmaverseraw_0.1.1 
+Log Start Time: 2026-02-11 15:32:02.042328 
 ========================================================================= 
 
 select: dropped one variable (DOMAIN)
 
-NOTE: Log Print Time:  2026-02-10 17:48:16.694187 
-NOTE: Elapsed Time: 0.128919839859009 secs 
+NOTE: Log Print Time:  2026-02-11 15:32:02.131512 
+NOTE: Elapsed Time: 0.0879440307617188 secs 
 
 ========================================================================= 
-Log End Time: 2026-02-10 17:48:30.690253 
+Log End Time: 2026-02-11 15:32:16.374974 
 Log Elapsed Time: 0 00:00:14 
 ========================================================================= 
